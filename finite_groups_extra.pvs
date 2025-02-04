@@ -1,0 +1,30 @@
+finite_groups_extra[T:Type+,*:[T,T->T],one:T]: THEORY
+
+BEGIN
+
+   ASSUMING IMPORTING algebra@group_def[T,*,one]
+
+       fullset_is_group: ASSUMPTION group?(fullset[T])
+
+   ENDASSUMING
+
+
+   IMPORTING algebra@finite_groups[T, *, one]
+
+   G: VAR finite_group
+   n: VAR nat
+
+% TCC was not done
+
+% Simplify proof 58 -> 37
+period_divides_order_element: LEMMA
+FORALL (a:(G)): a^n = one IMPLIES divides(period(G,a),n)
+
+
+             
+
+
+
+  
+
+  END finite_groups_extra

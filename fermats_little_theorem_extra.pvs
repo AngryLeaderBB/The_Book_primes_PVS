@@ -1,0 +1,17 @@
+fermats_little_theorem_extra: THEORY
+BEGIN
+
+    IMPORTING numbers@fermats_little_theorem
+
+    k: VAR int
+    p: VAR (prime?)
+
+    fermats_little_theorem2: THEOREM
+    	rem(p)(k^p) = rem(p)(k)
+
+    fermats_little_theorem3: THEOREM
+       NOT divides(p,k) =>
+    	 rem(p)(k^(p-1)) = rem(p)(1)
+
+
+END fermats_little_theorem_extra
