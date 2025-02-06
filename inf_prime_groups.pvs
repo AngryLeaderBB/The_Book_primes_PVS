@@ -36,24 +36,18 @@ IMPORTING ints@max_finite_set_nat,
 	  ring_zn_extra,
 	  fermats_little_theorem_extra
 	  
-	
-	  
+		  
 q: VAR (prime?)   
 n: VAR posnat
 a: VAR int
 i: VAR nat
 
-%S: VAR non_empty_finite_set[nat]
 
-%max(S) : ({a: nat | S(a) AND (FORALL i: S(i) IMPLIES i <= a)}) = max_finite_set_nat.max(S)
-Primes: set[nat] = {x:nat | prime?(x)}
+Mersenne_number(p:(prime?)): posnat = expt(2, p)-1
+
+%——- nz_coset related
+
 nz_coset(n): Type = {x: coset(Z,nZ(n))| x /= nZ(n)}
-
-% In the next Conjecture,  we have two important remarks:
-% (i) Since we have two use in subsequent lemmas that we are dealing with a multiplicative group Z_q- {nZ(q)},
-% we prove the next lemma over nz_cosets.
-% (ii) Also, a TCC is generated from such conjecture: the product of two nz_cosets is also a nz_coset.
-% It holds in case we are considering the cosets over nZ(q), where q is a prime number.
 
 two_not_zero_coset: LEMMA
    FORALL(n: posnat| n > 1):
@@ -68,23 +62,16 @@ nz_coset_product_is_nz_coset: LEMMA
          /= nZ(n)
 
 
-power_zp_nz_coset(p:(prime?), a: nz_coset(p), k:nat): {pp: nz_coset(p)| pp = 2+nZ(p) IMPLIES pp /= nZ(p)} =
+power_zp_nz_coset(p:(prime?), a: nz_coset(p), k:nat): nz_coset(p) =
                   power[nz_coset(p), product(Z,nZ(p)),+(1, nZ(p))](a, k)
 
-nz_coset_power_prod_nat: LEMMA
-       NOT divides(q,a) IMPLIES 
-              power_zp_nz_coset(q, a + nZ(q), i)  = power[int, *, 1](a,i) + nZ(q)
-
-fin_prime_exists_max: LEMMA
-is_finite(Primes) IMPLIES Primes(max(Primes))
+nz_coset_power_id: LEMMA
+       FORALL(p:(prime?), a:int | NOT divides(p,a)): FORALL(i:nat):
+              power_zp_nz_coset(p, a + nZ(p), i)  = expt(a,i) + nZ(p)
 
 one_prime_decomposition_ind: LEMMA  %% try to include in a general theory about integers
 FORALL (n:nat) : n /= 1 IMPLIES EXISTS(p:(prime?)): divides(p,n)
 
-max_prime_Mersenne_divisor: LEMMA
-   is_finite(Primes) IMPLIES EXISTS (q:(prime?)): divides(q, expt(2,max(Primes)) - 1)
-
-   
 nz_prime_is_group: LEMMA
 		    FORALL (n:posnat): (prime?(n)) IMPLIES
 		    	   group?[nz_coset(n),product(Z, nZ(n)), (+)(1, nZ(n))](Z(n))
@@ -92,37 +79,43 @@ nz_prime_is_group: LEMMA
 nz_prime_is_finite_group: LEMMA
 			  FORALL (n:posnat): (prime?(n)) IMPLIES
 		    	   	 finite_group?[nz_coset(n),product(Z, nZ(n)), (+)(1, nZ(n))](remove[set[int]](nZ(n), Z(n)))
-
-card_mult_group_Zn: LEMMA
-card(remove(nZ(n),Z(n))) = n - 1
 			   
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % Avoids inst related TCC
 power_eq_one_nz_coset(p:(prime?), a:nz_coset(p)): set[posnat] = {n: posnat| power_zp_nz_coset(p, a, n) = 1+nZ(p)}
 
 % Avoids inst related TCC
 period_nz_coset(p:(prime?), a:nz_coset(p)): posnat = min(power_eq_one_nz_coset(p, a))
 
+
+Mersenne_divisor_is_odd: LEMMA
+   FORALL(d: int, p:(prime?)): divides(d, Mersenne_number(p)) => odd?(d)
+
+Mersenne_prime_divisor_not_divide_2: LEMMA
+   FORALL(q, p:(prime?)): divides(q, Mersenne_number(p)) => NOT divides(q, 2)
+
+Mersenne_divisor_Fermat_prop: LEMMA
+   FORALL(q, p:(prime?)): divides(q, Mersenne_number(p))
+   	     		     => power_zp_nz_coset(q, 2+nZ(q), q-1) = 1+nZ(q)
+
+Mersenne_divisor_Fermat_prop2: LEMMA
+   FORALL(q, p:(prime?)): divides(q, Mersenne_number(p))
+   	     		     => power_zp_nz_coset(q, 2+nZ(q), p) = 1+nZ(q)
+
+Mersenne_divisor_Fermat_prop3: LEMMA
+   FORALL(q: (prime?)): is_finite(fullset[(prime?)]) AND
+     divides(q,
+	Mersenne_number(max_finite_set_nat.max(fullset[(prime?)]))) =>
+	    max_finite_set_nat.max(fullset[(prime?)]) /= q-1
+
 nz_coset_period_def_equiv: LEMMA
    FORALL(p:(prime?), a:nz_coset(p)):
      period[nz_coset(p),product(Z,nZ(p)),+(1,nZ(p))]
-	(remove(nZ(p),Z(p)), a) = period_nz_coset(p, a) 
-
-period_2_Zq_is_max_prime_lemma1: LEMMA
-   is_finite(Primes) AND (odd?(q)) AND  divides(q, expt(2,max(Primes)) - 1) IMPLIES
-      power_zp_nz_coset(q, +(2,nZ(q)), max(Primes)) = +(1,nZ(q))
-      
-period_2_Zq_is_max_prime_lemma2: LEMMA
-    is_finite(Primes) IMPLIES (FORALL (q:(prime?)|odd?(q)): divides(q, expt(2,max(Primes)) - 1) IMPLIES
-     period_nz_coset(q, +(2,nZ(q))) = max(Primes)) 
-
-fin_prime_q_gt_maxp: LEMMA
-is_finite(Primes) IMPLIES EXISTS (q:(prime?)|odd?(q)): q > max(Primes)
-
-
-primes_is_infinity: THEOREM
-NOT is_finite(Primes)
+	(remove(nZ(p),Z(p)), a) = period_nz_coset(p, a)
+	
+primes_is_infinite: THEOREM
+NOT is_finite(fullset[(prime?)])
 
 
 END inf_prime_groups

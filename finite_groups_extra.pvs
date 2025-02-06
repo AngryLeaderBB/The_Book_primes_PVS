@@ -14,17 +14,7 @@ BEGIN
    G: VAR finite_group
    n: VAR nat
 
-% TCC was not done
-
-% Simplify proof 58 -> 37
 period_divides_order_element: LEMMA
-FORALL (a:(G)): a^n = one IMPLIES divides(period(G,a),n)
-
-
-             
-
-
-
-  
+   FORALL (a:(G)): a^n = one IMPLIES divides(period(G,a),n)
 
   END finite_groups_extra
