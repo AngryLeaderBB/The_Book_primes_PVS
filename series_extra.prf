@@ -55,7 +55,7 @@
      "(strict_total_order?[real])" |real_props| NIL)
     (|Tri_rec| FORMULA-DECL NIL |triangle_numbers| |series|)
     (|int_plus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
-    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL) NIL
+    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
     (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
     (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL)
@@ -101,8 +101,8 @@
     (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
     (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
     (|numfield| NONEMPTY-TYPE-EQ-DECL NIL |number_fields| NIL)
-    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL) NIL
-    NIL (|nonneg_int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
+    (|nonneg_int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
     (|posnat| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
     (> CONST-DECL "bool" |reals| NIL))
    SHOSTAK))
@@ -206,7 +206,7 @@
     (>= CONST-DECL "bool" |reals| NIL)
     (|nat| NONEMPTY-TYPE-EQ-DECL NIL |naturalnumbers| NIL)
     (<= CONST-DECL "bool" |reals| NIL)
-    (|Tri| CONST-DECL "nat" |triangle_numbers| |series|) NIL
+    (|Tri| CONST-DECL "nat" |triangle_numbers| |series|)
     (< CONST-DECL "bool" |reals| NIL)
     (|numfield| NONEMPTY-TYPE-EQ-DECL NIL |number_fields| NIL)
     (+ CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
@@ -216,7 +216,7 @@
     (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL)
     (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
-    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL) NIL
+    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
     (|int_plus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
     (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL)
@@ -314,7 +314,7 @@
      |real_props| NIL)
     (|real_lt_is_strict_total_order| NAME-JUDGEMENT
      "(strict_total_order?[real])" |real_props| NIL)
-    NIL NIL (|below| TYPE-EQ-DECL NIL |nat_types| NIL)
+    (|below| TYPE-EQ-DECL NIL |nat_types| NIL)
     (|injective?| CONST-DECL "bool" |functions| NIL)
     (|member| CONST-DECL "bool" |sets| NIL) (<= CONST-DECL "bool" |reals| NIL)
     (|Tri| CONST-DECL "nat" |triangle_numbers| |series|)
@@ -376,15 +376,12 @@
    ((|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL)
     (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
-    (|x| SKOLEM-CONST-DECL "nat" |series_extra| NIL)
     (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
     (|Tri_rec| FORMULA-DECL NIL |triangle_numbers| |series|)
     (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL)
     (|nnint_plus_posint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
      NIL)
-    (|k| SKOLEM-CONST-DECL "{k: nat | k <= n}" |series_extra| NIL)
-    (|n| SKOLEM-CONST-DECL "nat" |series_extra| NIL)
     (|nnint_plus_nnint_is_nnint| APPLICATION-JUDGEMENT "nonneg_int" |integers|
      NIL)
     (|posint_plus_nnint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
@@ -442,7 +439,7 @@
     (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL)
     (|lower_inv_triang| CONST-DECL "nat" |series_extra| NIL)
-    (|Tri| CONST-DECL "nat" |triangle_numbers| |series|) NIL)
+    (|Tri| CONST-DECL "nat" |triangle_numbers| |series|))
    NIL
    (|s_prod_idx1| SUBTYPE
     "(number_fields.-)(series_extra.i, triangle_numbers.Tri(series_extra.lower_inv_triang(series_extra.i)))"
@@ -679,9 +676,160 @@
     (|real_lt_is_strict_total_order| NAME-JUDGEMENT
      "(strict_total_order?[real])" |real_props| NIL)
     (|int_plus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
-    (TRUE CONST-DECL "bool" |booleans| NIL) NIL NIL
+    (TRUE CONST-DECL "bool" |booleans| NIL)
+    (|n| SKOLEM-CONST-DECL "nat" |series_extra| NIL)
+    (|x| SKOLEM-CONST-DECL "{k: nat | k <= n}" |series_extra| NIL)
     (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL))
+   SHOSTAK))
+ (|s_prod_identity2| 0
+  (|s_prod_identity2-1| NIL 3948540803
+   ("" (SKEEP)
+    (("" (MEASURE-INDUCT "n" "n")
+      (("" (SKEEP)
+        (("" (CASE-REPLACE "x = 0")
+          (("1" (HIDE -2)
+            (("1" (EXPAND "Tri")
+              (("1" (EXPAND "sigma")
+                (("1" (EXPAND "sigma")
+                  (("1" (EXPAND "s_prod_idx2")
+                    (("1" (EXPAND "s_prod_idx1")
+                      (("1" (LEMMA "triang_num_id")
+                        (("1" (INST -1 "0" "0")
+                          (("1" (EXPAND "Tri" -1)
+                            (("1" (EXPAND "sigma")
+                              (("1" (EXPAND "sigma")
+                                (("1" (REPLACES -1)
+                                  (("1" (EXPAND "Tri")
+                                    (("1" (EXPAND "sigma")
+                                      (("1" (EXPAND "sigma")
+                                        (("1" (PROPAX) NIL NIL)) NIL))
+                                      NIL))
+                                    NIL))
+                                  NIL))
+                                NIL))
+                              NIL))
+                            NIL))
+                          NIL))
+                        NIL))
+                      NIL))
+                    NIL))
+                  NIL))
+                NIL))
+              NIL))
+            NIL)
+           ("2" (INST -1 "x-1")
+            (("1" (ASSERT)
+              (("1" (EXPAND "sigma" 2 2)
+                (("1" (REPLACE -1 2 RL HIDE)
+                  (("1" (LEMMA "s_prod_identity")
+                    (("1" (INST -1 "a" "b" "x")
+                      (("1" (REPLACE -1 2 RL HIDE)
+                        (("1" (LEMMA "sigma_split")
+                          (("1"
+                            (INST -1
+                             "LAMBDA (i: nat): a(s_prod_idx1(i)) * b(s_prod_idx2(i))"
+                             "Tri(x) + x" "0" "Tri(x - 1) - 1 + x")
+                            (("1" (ASSERT)
+                              (("1" (PROP)
+                                (("1" (CASE-REPLACE "Tri(x - 1) + x = Tri(x)")
+                                  (("1" (HIDE-ALL-BUT 1)
+                                    (("1" (REWRITE* "Gauss_idx")
+                                      (("1" (ASSERT) NIL NIL)) NIL))
+                                    NIL))
+                                  NIL)
+                                 ("2" (REWRITE* "Gauss_idx")
+                                  (("2" (ASSERT) NIL NIL)) NIL))
+                                NIL))
+                              NIL))
+                            NIL))
+                          NIL))
+                        NIL))
+                      NIL))
+                    NIL))
+                  NIL))
+                NIL))
+              NIL)
+             ("2" (ASSERT) NIL NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|x| SKOLEM-CONST-DECL "nat" |series_extra| NIL)
+    (|s_prod_identity| FORMULA-DECL NIL |series_extra| NIL)
+    (|rat_plus_rat_is_rat| APPLICATION-JUDGEMENT "rat" |rationals| NIL)
+    (|nnint_plus_posint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
+     NIL)
+    (|nnint_times_nnint_is_nnint| APPLICATION-JUDGEMENT "nonneg_int" |integers|
+     NIL)
+    (|nnrat_div_posrat_is_nnrat| APPLICATION-JUDGEMENT "nonneg_rat" |rationals|
+     NIL)
+    (|Gauss_idx| FORMULA-DECL NIL |triangle_numbers| |series|)
+    (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|rat_div_nzrat_is_rat| APPLICATION-JUDGEMENT "rat" |rationals| NIL)
+    (|nnrat_plus_nnrat_is_nnrat| APPLICATION-JUDGEMENT "nonneg_rat" |rationals|
+     NIL)
+    (|rat_minus_rat_is_rat| APPLICATION-JUDGEMENT "rat" |rationals| NIL)
+    (|real_plus_real_is_real| APPLICATION-JUDGEMENT "real" |reals| NIL)
+    (|minus_u8_u8| APPLICATION-JUDGEMENT "int16" |integertypes| NIL)
+    (|minus_i32_u32| APPLICATION-JUDGEMENT "int64" |integertypes| NIL)
+    (|minus_i16_u16| APPLICATION-JUDGEMENT "int32" |integertypes| NIL)
+    (|even_minus_odd_is_odd| APPLICATION-JUDGEMENT "odd_int" |integers| NIL)
+    (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+    (|sigma_split| FORMULA-DECL NIL |sigma| |reals|)
+    (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|int_plus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|sigma_nat| APPLICATION-JUDGEMENT "nat" |sigma_nat| |reals|)
+    (|triang_num_id| FORMULA-DECL NIL |series_extra| NIL)
+    (TRUE CONST-DECL "bool" |booleans| NIL)
+    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
+    (|below| TYPE-EQ-DECL NIL |nat_types| NIL)
+    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
+    (|s_prod_idx2| CONST-DECL "nat" |series_extra| NIL)
+    (|s_prod_idx1| CONST-DECL "nat" |series_extra| NIL)
+    (|sequence| TYPE-EQ-DECL NIL |sequences| NIL)
+    (* CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
+    (|Tri| CONST-DECL "nat" |triangle_numbers| |series|)
+    (+ CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
+    (|numfield| NONEMPTY-TYPE-EQ-DECL NIL |number_fields| NIL)
+    (|sigma| DEF-DECL "real" |sigma| |reals|)
+    (|T_high| TYPE-EQ-DECL NIL |sigma| |reals|)
+    (|T_low| TYPE-EQ-DECL NIL |sigma| |reals|)
+    (<= CONST-DECL "bool" |reals| NIL)
+    (OR CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (|nnint_plus_nnint_is_nnint| APPLICATION-JUDGEMENT "nonneg_int" |integers|
+     NIL)
+    (|real_times_real_is_real| APPLICATION-JUDGEMENT "real" |reals| NIL)
+    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+    (|posint_plus_nnint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
+     NIL)
+    (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|wf_nat| FORMULA-DECL NIL |naturalnumbers| NIL)
+    (< CONST-DECL "bool" |reals| NIL)
+    (|naturalnumber| TYPE-EQ-DECL NIL |naturalnumbers| NIL)
+    (|nat| NONEMPTY-TYPE-EQ-DECL NIL |naturalnumbers| NIL)
+    (>= CONST-DECL "bool" |reals| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+    (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+    (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+    (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+    (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+    (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+    (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+    (|measure_induction| FORMULA-DECL NIL |measure_induction| NIL)
+    (|well_founded?| CONST-DECL "bool" |orders| NIL)
+    (|pred| TYPE-EQ-DECL NIL |defined_types| NIL))
    SHOSTAK))
  (|s_prod_conv| 0
   (|s_prod_conv-1| NIL 3946033034
@@ -792,8 +940,7 @@
         NIL))
       NIL))
     NIL)
-   (NIL
-    (|nnreal_times_nnreal_is_nnreal| APPLICATION-JUDGEMENT "nnreal"
+   ((|nnreal_times_nnreal_is_nnreal| APPLICATION-JUDGEMENT "nnreal"
      |real_types| NIL)
     (|sequence| TYPE-EQ-DECL NIL |sequences| NIL)
     (|nnreal| TYPE-EQ-DECL NIL |real_types| NIL)
@@ -990,8 +1137,8 @@
     (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
     (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
     (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
-    (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL) NIL NIL
-    (|n_eq_seq?| CONST-DECL "bool" |sequence_extra| NIL) NIL
+    (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+    (|n_eq_seq?| CONST-DECL "bool" |sequence_extra| NIL)
     (|n_eq_seq_min_idx| CONST-DECL "nat" |sequence_extra| NIL)
     (|bijective?| CONST-DECL "bool" |functions| NIL)
     (|n_eq_perm| CONST-DECL "nat" |sequence_extra| NIL)
@@ -1119,7 +1266,6 @@
     (|nonneg_series_bij_limit| FORMULA-DECL NIL |series_aux| |series|)
     (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL)
-    NIL
     (|real_lt_is_strict_total_order| NAME-JUDGEMENT
      "(strict_total_order?[real])" |real_props| NIL)
     (|limit_series_shift| FORMULA-DECL NIL |series| |series|)
@@ -1132,15 +1278,15 @@
     (OR CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
     (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
     (<= CONST-DECL "bool" |reals| NIL)
-    (|real_plus_real_is_real| APPLICATION-JUDGEMENT "real" |reals| NIL) NIL NIL
-    NIL (|nonneg_series_bij_conv| FORMULA-DECL NIL |series_aux| |series|)
+    (|real_plus_real_is_real| APPLICATION-JUDGEMENT "real" |reals| NIL)
+    (|nonneg_series_bij_conv| FORMULA-DECL NIL |series_aux| |series|)
     (|conv_series_shift| FORMULA-DECL NIL |series| |series|)
     (|sigma_ge_0| FORMULA-DECL NIL |sigma| |reals|)
     (|limit_nonneg| FORMULA-DECL NIL |series_aux| |series|)
     (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL)
     (|convergent?| CONST-DECL "bool" |convergence_sequences| |analysis|)
-    (|limit| CONST-DECL "real" |convergence_sequences| |analysis|) NIL
+    (|limit| CONST-DECL "real" |convergence_sequences| |analysis|)
     (|pred| TYPE-EQ-DECL NIL |defined_types| NIL)
     (|well_founded?| CONST-DECL "bool" |orders| NIL)
     (|measure_induction| FORMULA-DECL NIL |measure_induction| NIL)
@@ -1149,7 +1295,7 @@
     (|wf_nat| FORMULA-DECL NIL |naturalnumbers| NIL)
     (|posreal_plus_nnreal_is_posreal| APPLICATION-JUDGEMENT "posreal"
      |real_types| NIL)
-    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL) NIL
+    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
     (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
     (+ CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
     (|numfield| NONEMPTY-TYPE-EQ-DECL NIL |number_fields| NIL)

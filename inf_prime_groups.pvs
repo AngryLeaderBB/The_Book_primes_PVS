@@ -65,6 +65,7 @@ nz_coset_product_is_nz_coset: LEMMA
 power_zp_nz_coset(p:(prime?), a: nz_coset(p), k:nat): nz_coset(p) =
                   power[nz_coset(p), product(Z,nZ(p)),+(1, nZ(p))](a, k)
 
+% (a+nZ(p)) ^ i = a ^ i + nZ(p)
 nz_coset_power_id: LEMMA
        FORALL(p:(prime?), a:int | NOT divides(p,a)): FORALL(i:nat):
               power_zp_nz_coset(p, a + nZ(p), i)  = expt(a,i) + nZ(p)
@@ -88,6 +89,10 @@ power_eq_one_nz_coset(p:(prime?), a:nz_coset(p)): set[posnat] = {n: posnat| powe
 % Avoids inst related TCC
 period_nz_coset(p:(prime?), a:nz_coset(p)): posnat = min(power_eq_one_nz_coset(p, a))
 
+nz_coset_period_def_equiv: LEMMA
+   FORALL(p:(prime?), a:nz_coset(p)):
+     period[nz_coset(p),product(Z,nZ(p)),+(1,nZ(p))]
+	(remove(nZ(p),Z(p)), a) = period_nz_coset(p, a)
 
 Mersenne_divisor_is_odd: LEMMA
    FORALL(d: int, p:(prime?)): divides(d, Mersenne_number(p)) => odd?(d)
@@ -102,17 +107,6 @@ Mersenne_divisor_Fermat_prop: LEMMA
 Mersenne_divisor_Fermat_prop2: LEMMA
    FORALL(q, p:(prime?)): divides(q, Mersenne_number(p))
    	     		     => power_zp_nz_coset(q, 2+nZ(q), p) = 1+nZ(q)
-
-Mersenne_divisor_Fermat_prop3: LEMMA
-   FORALL(q: (prime?)): is_finite(fullset[(prime?)]) AND
-     divides(q,
-	Mersenne_number(max_finite_set_nat.max(fullset[(prime?)]))) =>
-	    max_finite_set_nat.max(fullset[(prime?)]) /= q-1
-
-nz_coset_period_def_equiv: LEMMA
-   FORALL(p:(prime?), a:nz_coset(p)):
-     period[nz_coset(p),product(Z,nZ(p)),+(1,nZ(p))]
-	(remove(nZ(p),Z(p)), a) = period_nz_coset(p, a)
 	
 primes_is_infinite: THEOREM
 NOT is_finite(fullset[(prime?)])
