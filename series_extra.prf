@@ -677,8 +677,6 @@
      "(strict_total_order?[real])" |real_props| NIL)
     (|int_plus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
     (TRUE CONST-DECL "bool" |booleans| NIL)
-    (|n| SKOLEM-CONST-DECL "nat" |series_extra| NIL)
-    (|x| SKOLEM-CONST-DECL "{k: nat | k <= n}" |series_extra| NIL)
     (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL))
    SHOSTAK))
@@ -758,7 +756,6 @@
     NIL)
    ((|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL)
-    (|x| SKOLEM-CONST-DECL "nat" |series_extra| NIL)
     (|s_prod_identity| FORMULA-DECL NIL |series_extra| NIL)
     (|rat_plus_rat_is_rat| APPLICATION-JUDGEMENT "rat" |rationals| NIL)
     (|nnint_plus_posint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
@@ -785,7 +782,6 @@
     (|real_lt_is_strict_total_order| NAME-JUDGEMENT
      "(strict_total_order?[real])" |real_props| NIL)
     (|int_plus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
-    (|sigma_nat| APPLICATION-JUDGEMENT "nat" |sigma_nat| |reals|)
     (|triang_num_id| FORMULA-DECL NIL |series_extra| NIL)
     (TRUE CONST-DECL "bool" |booleans| NIL)
     (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
@@ -831,27 +827,321 @@
     (|well_founded?| CONST-DECL "bool" |orders| NIL)
     (|pred| TYPE-EQ-DECL NIL |defined_types| NIL))
    SHOSTAK))
- (|s_prod_conv| 0
-  (|s_prod_conv-1| NIL 3946033034
+ (|Tri_ineq_aux| 0
+  (|Tri_ineq_aux-1| NIL 3949732348
    ("" (SKEEP)
-    (("" (EXPAND "conv_series?")
-      (("" (LEMMA "increasing_bounded_convergence")
-        ((""
-          (INST -1 "series(LAMBDA (i: nat):
-                           a(s_prod_idx1(i)) * b(s_prod_idx2(i)))")
-          (("1" (PROP)
-            (("1" (EXPAND "convergent?") (("1" (INST?) NIL NIL)) NIL)
-             ("2" (HIDE-ALL-BUT 1)
-              (("2" (EXPAND "increasing?")
-                (("2" (SKEEP)
-                  (("2" (EXPAND "series")
-                    (("2" (LEMMA "sigma_split_ge")
-                      (("2"
-                        (INST -1
-                         "LAMBDA (i: nat): a(s_prod_idx1(i)) * b(s_prod_idx2(i))"
-                         "y" "x" "0")
-                        (("2" (ASSERT)
-                          (("2" (REPLACES -1) (("2" (ASSERT) NIL NIL)) NIL))
+    (("" (LEMMA "Tri_strict_increasing")
+      (("" (INST -1 "n" "m-n")
+        (("1" (ASSERT)
+          (("1" (CASE "Tri(n) <= Tri(m-1)")
+            (("1" (LEMMA "Tri_rec")
+              (("1" (INST -1 "m-1")
+                (("1" (REPLACE -1 (-3 -4) RL HIDE)
+                  (("1" (LEMMA "lt_plus_lt1")
+                    (("1" (INST -1 "k" "Tri(n)" "Tri(m-1)" "m")
+                      (("1" (ASSERT) NIL NIL)) NIL))
+                    NIL))
+                  NIL))
+                NIL))
+              NIL)
+             ("2" (CASE-REPLACE "n = m-1")
+              (("1" (ASSERT) NIL NIL)
+               ("2" (LEMMA "Tri_strict_increasing")
+                (("2" (INST -1 "n" "m-1-n")
+                  (("1" (ASSERT) NIL NIL) ("2" (ASSERT) NIL NIL)) NIL))
+                NIL))
+              NIL))
+            NIL))
+          NIL)
+         ("2" (ASSERT) NIL NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|Tri_strict_increasing| FORMULA-DECL NIL |series_extra| NIL)
+    (|nnint_plus_nnint_is_nnint| APPLICATION-JUDGEMENT "nonneg_int" |integers|
+     NIL)
+    (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|int_plus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (+ CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
+    (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+    (|Tri_rec| FORMULA-DECL NIL |triangle_numbers| |series|)
+    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+    (|minus_u8_u8| APPLICATION-JUDGEMENT "int16" |integertypes| NIL)
+    (|minus_i32_u32| APPLICATION-JUDGEMENT "int64" |integertypes| NIL)
+    (|minus_i16_u16| APPLICATION-JUDGEMENT "int32" |integertypes| NIL)
+    (|odd_minus_odd_is_even| APPLICATION-JUDGEMENT "even_int" |integers| NIL)
+    (|posint_plus_nnint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
+     NIL)
+    (|lt_plus_lt1| FORMULA-DECL NIL |real_props| NIL)
+    (<= CONST-DECL "bool" |reals| NIL)
+    (|Tri| CONST-DECL "nat" |triangle_numbers| |series|)
+    (|nonneg_int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (|posnat| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (> CONST-DECL "bool" |reals| NIL)
+    (|nat| NONEMPTY-TYPE-EQ-DECL NIL |naturalnumbers| NIL)
+    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+    (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+    (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
+    (|numfield| NONEMPTY-TYPE-EQ-DECL NIL |number_fields| NIL)
+    (>= CONST-DECL "bool" |reals| NIL)
+    (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+    (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+    (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+    (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+    (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL))
+   SHOSTAK))
+ (|s_prod_convergence| 0
+  (|s_prod_convergence-1| NIL 3949672224
+   ("" (SKEEP)
+    (("" (LEMMA "Cauchy_product_convergence")
+      (("" (INST -1 "a" "b")
+        (("" (CASE-REPLACE "abs(a) = a")
+          (("1" (ASSERT)
+            (("1" (EXPAND "convergence")
+              (("1" (SKEEP)
+                (("1" (INST -2 "epsilon/2")
+                  (("1" (SKOLEM -2 "N1")
+                    (("1" (LEMMA "Cauchy_product_conv")
+                      (("1" (INST -1 "a" "b")
+                        (("1" (REPLACES -2)
+                          (("1" (ASSERT)
+                            (("1" (EXPAND "conv_series?")
+                              (("1" (LEMMA "conv_series_terms_to_0")
+                                (("1" (INST?)
+                                  (("1" (ASSERT)
+                                    (("1" (HIDE -2)
+                                      (("1" (EXPAND "convergence")
+                                        (("1" (INST -1 "epsilon/2")
+                                          (("1" (SKOLEM -1 "N2")
+                                            (("1" (NAME "N" "max(N1, N2)")
+                                              (("1" (INST 1 "Tri(N)")
+                                                (("1" (SKOLEM 1 "j")
+                                                  (("1" (PROP)
+                                                    (("1" (EXPAND "series")
+                                                      (("1"
+                                                        (LEMMA "triang_decomp")
+                                                        (("1" (INST -1 "j")
+                                                          (("1" (SKEEP)
+                                                            (("1" (REPLACES -1)
+                                                              (("1"
+                                                                (CASE-REPLACE
+                                                                 "sigma(0, Tri(n) + k,
+                LAMBDA (i: nat): a(s_prod_idx1(i)) * b(s_prod_idx2(i)))
+           - inf_sum(a) * inf_sum(b) = (sigma(0, Tri(n) + n,
+                LAMBDA (i: nat): a(s_prod_idx1(i)) * b(s_prod_idx2(i)))
+           - inf_sum(a) * inf_sum(b)) + -sigma(Tri(n) + k+1, Tri(n) + n,
+                LAMBDA (i: nat): a(s_prod_idx1(i)) * b(s_prod_idx2(i)))")
+                                                                (("1" (HIDE -1)
+                                                                  (("1"
+                                                                    (LEMMA
+                                                                     "triangle")
+                                                                    (("1"
+                                                                      (INST?)
+                                                                      (("1"
+                                                                        (CASE
+                                                                            "abs((sigma(0, Tri(n) + n,
+                  LAMBDA (i: nat): a(s_prod_idx1(i)) * b(s_prod_idx2(i)))
+             - inf_sum(a) * inf_sum(b))) < epsilon/2")
+                                                                        (("1"
+                                                                          (CASE
+                                                                              "abs(-sigma(Tri(n) + k + 1, Tri(n) + n,
+                   LAMBDA (i: nat): a(s_prod_idx1(i)) * b(s_prod_idx2(i)))) < epsilon/2")
+                                                                          (("1"
+                                                                            (ASSERT)
+                                                                            NIL
+                                                                            NIL)
+                                                                           ("2"
+                                                                            (HIDE
+                                                                             -1
+                                                                             -2
+                                                                             -5
+                                                                             2)
+                                                                            (("2"
+                                                                              (CASE
+                                                                                  "FORALL(x:nnreal): abs(-x) = x")
+                                                                              (("1"
+                                                                                (INST?)
+                                                                                (("1"
+                                                                                  (REPLACES
+                                                                                   -1)
+                                                                                  (("1"
+                                                                                    (CASE
+                                                                                        "sigma(Tri(n) + k + 1, Tri(n) + n,
+            LAMBDA (i: nat): a(s_prod_idx1(i)) * b(s_prod_idx2(i))) <=  sigma(Tri(n), Tri(n) + n,
+            LAMBDA (i: nat): a(s_prod_idx1(i)) * b(s_prod_idx2(i)))")
+                                                                                    (("1"
+                                                                                      (REWRITE
+                                                                                       "s_prod_identity")
+                                                                                      (("1"
+                                                                                        (INST
+                                                                                         -3
+                                                                                         "n")
+                                                                                        (("1"
+                                                                                          (PROP)
+                                                                                          (("1"
+                                                                                            (ASSERT)
+                                                                                            NIL
+                                                                                            NIL)
+                                                                                           ("2"
+                                                                                            (HIDE-ALL-BUT
+                                                                                             (-2
+                                                                                              -5
+                                                                                              1))
+                                                                                            (("2"
+                                                                                              (EXPAND
+                                                                                               ">=")
+                                                                                              (("2"
+                                                                                                (LEMMA
+                                                                                                 "Tri_ineq_aux")
+                                                                                                (("2"
+                                                                                                  (INST?)
+                                                                                                  (("2"
+                                                                                                    (ASSERT)
+                                                                                                    NIL
+                                                                                                    NIL))
+                                                                                                  NIL))
+                                                                                                NIL))
+                                                                                              NIL))
+                                                                                            NIL))
+                                                                                          NIL))
+                                                                                        NIL))
+                                                                                      NIL)
+                                                                                     ("2"
+                                                                                      (HIDE-ALL-BUT
+                                                                                       1)
+                                                                                      (("2"
+                                                                                        (LEMMA
+                                                                                         "sigma_split[nat]")
+                                                                                        (("2"
+                                                                                          (INST
+                                                                                           -1
+                                                                                           "LAMBDA (i: nat): a(s_prod_idx1(i)) * b(s_prod_idx2(i))"
+                                                                                           "Tri(n)+n"
+                                                                                           "Tri(n)"
+                                                                                           "Tri(n)+k")
+                                                                                          (("2"
+                                                                                            (ASSERT)
+                                                                                            (("2"
+                                                                                              (REPLACES
+                                                                                               -1)
+                                                                                              (("2"
+                                                                                                (ASSERT)
+                                                                                                NIL
+                                                                                                NIL))
+                                                                                              NIL))
+                                                                                            NIL))
+                                                                                          NIL))
+                                                                                        NIL))
+                                                                                      NIL))
+                                                                                    NIL))
+                                                                                  NIL))
+                                                                                NIL)
+                                                                               ("2"
+                                                                                (HIDE-ALL-BUT
+                                                                                 1)
+                                                                                (("2"
+                                                                                  (GRIND)
+                                                                                  NIL
+                                                                                  NIL))
+                                                                                NIL))
+                                                                              NIL))
+                                                                            NIL))
+                                                                          NIL)
+                                                                         ("2"
+                                                                          (HIDE
+                                                                           -1
+                                                                           -3
+                                                                           2)
+                                                                          (("2"
+                                                                            (REWRITE
+                                                                             "s_prod_identity2")
+                                                                            (("2"
+                                                                              (INST
+                                                                               -2
+                                                                               "n")
+                                                                              (("2"
+                                                                                (ASSERT)
+                                                                                (("2"
+                                                                                  (HIDE
+                                                                                   (-2
+                                                                                    -3
+                                                                                    1))
+                                                                                  (("2"
+                                                                                    (EXPAND
+                                                                                     ">=")
+                                                                                    (("2"
+                                                                                      (LEMMA
+                                                                                       "Tri_ineq_aux")
+                                                                                      (("2"
+                                                                                        (INST?)
+                                                                                        (("2"
+                                                                                          (ASSERT)
+                                                                                          NIL
+                                                                                          NIL))
+                                                                                        NIL))
+                                                                                      NIL))
+                                                                                    NIL))
+                                                                                  NIL))
+                                                                                NIL))
+                                                                              NIL))
+                                                                            NIL))
+                                                                          NIL))
+                                                                        NIL))
+                                                                      NIL))
+                                                                    NIL))
+                                                                  NIL)
+                                                                 ("2"
+                                                                  (HIDE-ALL-BUT
+                                                                   1)
+                                                                  (("2"
+                                                                    (LEMMA
+                                                                     "sigma_split[nat]")
+                                                                    (("2"
+                                                                      (INST -1
+                                                                       "LAMBDA (i: nat): a(s_prod_idx1(i)) * b(s_prod_idx2(i))"
+                                                                       "Tri(n)+n"
+                                                                       "0"
+                                                                       "Tri(n)+k")
+                                                                      (("2"
+                                                                        (ASSERT)
+                                                                        NIL
+                                                                        NIL))
+                                                                      NIL))
+                                                                    NIL))
+                                                                  NIL))
+                                                                NIL))
+                                                              NIL))
+                                                            NIL))
+                                                          NIL))
+                                                        NIL))
+                                                      NIL))
+                                                    NIL))
+                                                  NIL))
+                                                NIL))
+                                              NIL))
+                                            NIL))
+                                          NIL))
+                                        NIL))
+                                      NIL))
+                                    NIL))
+                                  NIL))
+                                NIL))
+                              NIL))
+                            NIL))
                           NIL))
                         NIL))
                       NIL))
@@ -860,57 +1150,116 @@
                 NIL))
               NIL))
             NIL)
-           ("2" (HIDE 2)
-            (("2" (EXPAND "bounded_above?")
-              (("2" (INST 1 "inf_sum(a) * inf_sum(b)")
-                (("1" (SKEEP)
-                  (("1" (LEMMA "s_prod_ineq")
-                    (("1" (INST -1 "a" "b" "x")
-                      (("1" (ASSERT)
-                        (("1" (PROP)
-                          (("1" (EXPAND "series") (("1" (PROPAX) NIL NIL)) NIL)
-                           ("2" (EXPAND "conv_series?")
-                            (("2" (PROPAX) NIL NIL)) NIL)
-                           ("3" (EXPAND "conv_series?")
-                            (("3" (PROPAX) NIL NIL)) NIL))
-                          NIL))
-                        NIL))
-                      NIL))
-                    NIL))
-                  NIL)
-                 ("2" (EXPAND "conv_series?") (("2" (PROPAX) NIL NIL)) NIL)
-                 ("3" (EXPAND "conv_series?") (("3" (PROPAX) NIL NIL)) NIL))
-                NIL))
-              NIL))
+           ("2" (HIDE-ALL-BUT 1)
+            (("2" (DECOMPOSE-EQUALITY)
+              (("2" (EXPAND "abs") (("2" (GRIND) NIL NIL)) NIL)) NIL))
+            NIL)
+           ("3" (HIDE-ALL-BUT 1) (("3" (GRIND) NIL NIL)) NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|Cauchy_product_convergence| FORMULA-DECL NIL |Cauchy_product| NIL)
+    (|nonneg_real| NONEMPTY-TYPE-EQ-DECL NIL |real_types| NIL)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (|abs| CONST-DECL "sequence[real]" |series| |series|)
+    (|real_minus_real_is_real| APPLICATION-JUDGEMENT "real" |reals| NIL)
+    (|convergence| CONST-DECL "bool" |convergence_sequences| |analysis|)
+    (|posreal_div_posreal_is_posreal| APPLICATION-JUDGEMENT "posreal"
+     |real_types| NIL)
+    (> CONST-DECL "bool" |reals| NIL)
+    (|posreal| NONEMPTY-TYPE-EQ-DECL NIL |real_types| NIL)
+    (|numfield| NONEMPTY-TYPE-EQ-DECL NIL |number_fields| NIL)
+    (/= CONST-DECL "boolean" |notequal| NIL)
+    (|nznum| NONEMPTY-TYPE-EQ-DECL NIL |number_fields| NIL)
+    (/ CONST-DECL "[numfield, nznum -> numfield]" |number_fields| NIL)
+    (|Cauchy_product_conv| FORMULA-DECL NIL |Cauchy_product| NIL)
+    (TRUE CONST-DECL "bool" |booleans| NIL) NIL
+    (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (OR CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
+    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
+    (< CONST-DECL "bool" |reals| NIL)
+    (+ CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
+    (|below| TYPE-EQ-DECL NIL |nat_types| NIL)
+    (<= CONST-DECL "bool" |reals| NIL)
+    (|T_low| TYPE-EQ-DECL NIL |sigma| |reals|)
+    (|T_high| TYPE-EQ-DECL NIL |sigma| |reals|)
+    (|sigma| DEF-DECL "real" |sigma| |reals|)
+    (* CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
+    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
+    (|max| CONST-DECL "{p: real | p >= m AND p >= n}" |real_defs| NIL)
+    (|nonneg_rat_max| APPLICATION-JUDGEMENT
+     "{s: nonneg_rat | s >= q AND s >= r}" |real_defs| NIL)
+    (|nat_max| APPLICATION-JUDGEMENT "{k: nat | i <= k AND j <= k}" |real_defs|
+     NIL)
+    NIL (|minus_u8_u8| APPLICATION-JUDGEMENT "int16" |integertypes| NIL)
+    (|minus_i32_u32| APPLICATION-JUDGEMENT "int64" |integertypes| NIL)
+    (|minus_i16_u16| APPLICATION-JUDGEMENT "int32" |integertypes| NIL)
+    (|even_minus_odd_is_odd| APPLICATION-JUDGEMENT "odd_int" |integers| NIL)
+    (|s_prod_identity2| FORMULA-DECL NIL |series_extra| NIL)
+    (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|nnreal_plus_nnreal_is_nnreal| APPLICATION-JUDGEMENT "nnreal" |real_types|
+     NIL)
+    (|sigma_split| FORMULA-DECL NIL |sigma| |reals|)
+    (|s_prod_identity| FORMULA-DECL NIL |series_extra| NIL)
+    (|Tri_ineq_aux| FORMULA-DECL NIL |series_extra| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|abs| CONST-DECL "{n: nonneg_real | n >= m AND n >= -m}" |real_defs| NIL)
+    (|triangle| FORMULA-DECL NIL |real_props| NIL)
+    (|minus_real_is_real| APPLICATION-JUDGEMENT "real" |reals| NIL)
+    (|nnint_plus_nnint_is_nnint| APPLICATION-JUDGEMENT "nonneg_int" |integers|
+     NIL)
+    (|nnint_plus_posint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
+     NIL)
+    (|real_plus_real_is_real| APPLICATION-JUDGEMENT "real" |reals| NIL)
+    (- CONST-DECL "[numfield -> numfield]" |number_fields| NIL) NIL
+    (|s_prod_idx2| CONST-DECL "nat" |series_extra| NIL)
+    (|s_prod_idx1| CONST-DECL "nat" |series_extra| NIL)
+    (|triang_decomp| FORMULA-DECL NIL |series_extra| NIL)
+    (|Tri| CONST-DECL "nat" |triangle_numbers| |series|)
+    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+    (|conv_series_terms_to_0| FORMULA-DECL NIL |series| |series|) NIL
+    (|posint_plus_nnint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
+     NIL)
+    (|real_times_real_is_real| APPLICATION-JUDGEMENT "real" |reals| NIL)
+    (|nnreal_times_nnreal_is_nnreal| APPLICATION-JUDGEMENT "nnreal"
+     |real_types| NIL)
+    (|nnreal| TYPE-EQ-DECL NIL |real_types| NIL)
+    (|sequence| TYPE-EQ-DECL NIL |sequences| NIL)
+    (|nat| NONEMPTY-TYPE-EQ-DECL NIL |naturalnumbers| NIL)
+    (>= CONST-DECL "bool" |reals| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+    (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+    (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+    (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+    (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+    (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+    (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL))
+   SHOSTAK))
+ (|s_prod_conv| 0
+  (|s_prod_conv-1| NIL 3946033034
+   ("" (SKEEP)
+    (("" (EXPAND "conv_series?" 1)
+      (("" (LEMMA "s_prod_convergence")
+        (("" (INST?)
+          (("" (ASSERT)
+            (("" (EXPAND "convergent?")
+              (("" (INST 1 "inf_sum(a) * inf_sum(b)") NIL NIL)) NIL))
             NIL))
           NIL))
         NIL))
       NIL))
     NIL)
-   ((|increasing_bounded_convergence| FORMULA-DECL NIL |convergence_sequences|
-     |analysis|)
-    (|real_times_real_is_real| APPLICATION-JUDGEMENT "real" |reals| NIL)
-    (|sup| CONST-DECL "real" |real_fun_supinf| |analysis|)
-    (|convergent?| CONST-DECL "bool" |convergence_sequences| |analysis|)
-    (|increasing?| CONST-DECL "bool" |real_fun_preds| |reals|)
-    (TRUE CONST-DECL "bool" |booleans| NIL)
-    (|nnreal_plus_nnreal_is_nnreal| APPLICATION-JUDGEMENT "nnreal" |real_types|
-     NIL)
-    (|posint_plus_nnint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
-     NIL)
-    (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
-     |real_props| NIL)
-    (|real_lt_is_strict_total_order| NAME-JUDGEMENT
-     "(strict_total_order?[real])" |real_props| NIL)
-    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
-    (|minus_u8_u8| APPLICATION-JUDGEMENT "int16" |integertypes| NIL)
-    (|minus_i32_u32| APPLICATION-JUDGEMENT "int64" |integertypes| NIL)
-    (|minus_i16_u16| APPLICATION-JUDGEMENT "int32" |integertypes| NIL)
-    (|even_minus_odd_is_odd| APPLICATION-JUDGEMENT "odd_int" |integers| NIL)
-    (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
-    (|sigma_split_ge| FORMULA-DECL NIL |sigma_nat| |reals|)
-    (|nnreal_times_nnreal_is_nnreal| APPLICATION-JUDGEMENT "nnreal"
-     |real_types| NIL)
+   ((|conv_series?| CONST-DECL "bool" |series| |series|)
     (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
     (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
     (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
@@ -924,13 +1273,16 @@
     (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
     (>= CONST-DECL "bool" |reals| NIL)
     (|nat| NONEMPTY-TYPE-EQ-DECL NIL |naturalnumbers| NIL)
-    (|bounded_above?| CONST-DECL "bool" |real_fun_preds| |reals|)
+    (|nnreal| TYPE-EQ-DECL NIL |real_types| NIL)
     (|sequence| TYPE-EQ-DECL NIL |sequences| NIL)
+    (|convergent?| CONST-DECL "bool" |convergence_sequences| |analysis|)
+    (|real_times_real_is_real| APPLICATION-JUDGEMENT "real" |reals| NIL)
     (|numfield| NONEMPTY-TYPE-EQ-DECL NIL |number_fields| NIL)
     (* CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
-    (|nnreal| TYPE-EQ-DECL NIL |real_types| NIL)
-    (|s_prod_idx1| CONST-DECL "nat" |series_extra| NIL)
-    (|s_prod_idx2| CONST-DECL "nat" |series_extra| NIL))
+    (|inf_sum| CONST-DECL "real" |series| |series|)
+    (|nnreal_times_nnreal_is_nnreal| APPLICATION-JUDGEMENT "nnreal"
+     |real_types| NIL)
+    (|s_prod_convergence| FORMULA-DECL NIL |series_extra| NIL))
    SHOSTAK))
  (|lim_series_product_TCC1| 0
   (|lim_series_product_TCC1-1| NIL 3945518785
@@ -965,69 +1317,24 @@
  (|lim_series_product| 0
   (|lim_series_product-1| NIL 3945954276
    ("" (SKEEP)
-    (("" (REWRITE "limit_prod" :DIR RL)
-      (("" (LEMMA "convergence_subsequence")
-        ((""
-          (INST -1
-           "inf_sum(LAMBDA (s: nat): a(s_prod_idx1(s)) * b(s_prod_idx2(s)))"
-           "series(LAMBDA (s: nat): a(s_prod_idx1(s)) * b(s_prod_idx2(s)))"
-           "series(a) * series(b)")
-          (("1" (PROP)
-            (("1" (REWRITE "limit_def")
-              (("1" (EXPAND "inf_sum") (("1" (PROPAX) NIL NIL)) NIL)) NIL)
-             ("2" (HIDE 2)
-              (("2" (REWRITE "limit_def" :DIR RL)
-                (("1" (EXPAND "inf_sum") (("1" (PROPAX) NIL NIL)) NIL)
-                 ("2" (HIDE 2)
-                  (("2" (LEMMA "s_prod_conv")
-                    (("2" (INST?)
-                      (("2" (EXPAND "conv_series?") (("2" (PROPAX) NIL NIL))
-                        NIL))
-                      NIL))
-                    NIL))
-                  NIL)
-                 ("3" (EXPAND "conv_series?")
-                  (("3" (HIDE 2)
-                    (("3" (LEMMA "s_prod_conv")
-                      (("3" (INST?)
-                        (("3" (EXPAND "conv_series?") (("3" (PROPAX) NIL NIL))
+    (("" (LEMMA "s_prod_convergence")
+      (("" (INST?)
+        (("" (EXPAND "conv_series?")
+          (("" (ASSERT)
+            (("" (LEMMA "limit_equiv")
+              ((""
+                (INST -1 "inf_sum(a) * inf_sum(b)" "series(LAMBDA (i: nat):
+                           a(s_prod_idx1(i)) * b(s_prod_idx2(i)))")
+                (("" (FLATTEN)
+                  (("" (HIDE -2)
+                    (("" (ASSERT)
+                      (("" (FLATTEN)
+                        (("" (REPLACES -2)
+                          (("" (EXPAND "inf_sum") (("" (PROPAX) NIL NIL)) NIL))
                           NIL))
                         NIL))
                       NIL))
                     NIL))
-                  NIL))
-                NIL))
-              NIL)
-             ("3" (HIDE 2)
-              (("3" (EXPAND "subseq")
-                (("3" (INST 1 "lambda(j:nat):Tri(2*j)")
-                  (("1" (SKEEP)
-                    (("1" (LEMMA "s_prod_equiv")
-                      (("1" (INST -1 "a" "b" "i")
-                        (("1" (EXPAND "*")
-                          (("1" (EXPAND "series" 1) (("1" (ASSERT) NIL NIL))
-                            NIL))
-                          NIL))
-                        NIL))
-                      NIL))
-                    NIL)
-                   ("2" (EXPAND "strict_increasing?")
-                    (("2" (SKEEP)
-                      (("2" (LEMMA "Tri_strict_increasing")
-                        (("2" (INST -1 "2*x" "2*(y-x)")
-                          (("1" (ASSERT) NIL NIL) ("2" (ASSERT) NIL NIL)) NIL))
-                        NIL))
-                      NIL))
-                    NIL))
-                  NIL))
-                NIL))
-              NIL))
-            NIL)
-           ("2" (HIDE 2)
-            (("2" (EXPAND "conv_series?")
-              (("2" (LEMMA "s_prod_conv")
-                (("2" (INST -1 "a" "b")
-                  (("2" (EXPAND "conv_series?") (("2" (ASSERT) NIL NIL)) NIL))
                   NIL))
                 NIL))
               NIL))
@@ -1036,59 +1343,34 @@
         NIL))
       NIL))
     NIL)
-   ((|limit_prod| FORMULA-DECL NIL |convergence_ops| |analysis|)
-    (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
-    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
-    (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
-    (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
-    (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
-    (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
-    (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
-    (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
-    (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
-    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
-    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
-    (>= CONST-DECL "bool" |reals| NIL)
-    (|nat| NONEMPTY-TYPE-EQ-DECL NIL |naturalnumbers| NIL)
-    (|sequence| TYPE-EQ-DECL NIL |sequences| NIL)
-    (|convergent?| CONST-DECL "bool" |convergence_sequences| |analysis|)
-    (|nnreal| TYPE-EQ-DECL NIL |real_types| NIL)
+   ((|s_prod_convergence| FORMULA-DECL NIL |series_extra| NIL)
+    (|conv_series?| CONST-DECL "bool" |series| |series|)
+    (|limit_equiv| FORMULA-DECL NIL |convergence_ops| |analysis|)
+    (TRUE CONST-DECL "bool" |booleans| NIL)
     (|s_prod_idx2| CONST-DECL "nat" |series_extra| NIL)
     (|s_prod_idx1| CONST-DECL "nat" |series_extra| NIL)
+    (|series| CONST-DECL "sequence[real]" |series| |series|)
+    (|inf_sum| CONST-DECL "real" |series| |series|)
     (* CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
     (|numfield| NONEMPTY-TYPE-EQ-DECL NIL |number_fields| NIL)
     (|nnreal_times_nnreal_is_nnreal| APPLICATION-JUDGEMENT "nnreal"
      |real_types| NIL)
-    (|nnint_times_nnint_is_nnint| APPLICATION-JUDGEMENT "nonneg_int" |integers|
-     NIL)
-    (|even_times_int_is_even| APPLICATION-JUDGEMENT "even_int" |integers| NIL)
-    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
-    (|Tri| CONST-DECL "nat" |triangle_numbers| |series|)
-    (|strict_increasing?| CONST-DECL "bool" |real_fun_preds| |reals|)
-    (|extraction| TYPE-EQ-DECL NIL |sequence_props| |analysis|)
-    (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
-     |real_props| NIL)
-    (|real_lt_is_strict_total_order| NAME-JUDGEMENT
-     "(strict_total_order?[real])" |real_props| NIL)
-    (|real_gt_is_strict_total_order| NAME-JUDGEMENT
-     "(strict_total_order?[real])" |real_props| NIL)
-    (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
-    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
-     |real_props| NIL)
-    (> CONST-DECL "bool" |reals| NIL)
-    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
-    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
-    (|nonneg_int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
-    (|posnat| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
-    (|even_plus_even_is_even| APPLICATION-JUDGEMENT "even_int" |integers| NIL)
-    (|even_minus_even_is_even| APPLICATION-JUDGEMENT "even_int" |integers| NIL)
-    (|Tri_strict_increasing| FORMULA-DECL NIL |series_extra| NIL)
-    (|subseq| CONST-DECL "bool" |sequence_props| |analysis|)
-    (|s_prod_conv| FORMULA-DECL NIL |series_extra| NIL)
-    (|limit_def| FORMULA-DECL NIL |convergence_sequences| |analysis|)
-    (|limit| CONST-DECL "real" |convergence_sequences| |analysis|)
-    (|convergence_subsequence| FORMULA-DECL NIL |convergence_sequences|
-     |analysis|))
+    (|real_times_real_is_real| APPLICATION-JUDGEMENT "real" |reals| NIL)
+    (|sequence| TYPE-EQ-DECL NIL |sequences| NIL)
+    (|nnreal| TYPE-EQ-DECL NIL |real_types| NIL)
+    (|nat| NONEMPTY-TYPE-EQ-DECL NIL |naturalnumbers| NIL)
+    (>= CONST-DECL "bool" |reals| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+    (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+    (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+    (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+    (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+    (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+    (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL))
    SHOSTAK))
  (|convegent_seq_sort| 0
   (|convegent_seq_sort-1| NIL 3946850146
