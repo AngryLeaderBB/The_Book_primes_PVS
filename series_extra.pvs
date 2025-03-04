@@ -1,9 +1,28 @@
+%------------------------------------------------------------------------------
+% Authors:
+%
+%		Bruno Berto de Oliveira Ribeiro
+%		Universidade de Brasília - Brazil
+%
+% 		Thaynara Arielly de Lima
+% 		Universidade Federal de Goiás - Brazil
+%
+%		Mauricio Ayala-Rincón
+%		Universidade de Brasília - Brazil
+%
+%               Mariano M. Moscato
+%               NASA  Langley  Research  Center - US
+%
+%------------------------------------------------------------------------------
+
 series_extra: THEORY
 
   BEGIN
 
   IMPORTING series@series_aux, reals@sigma, ints@max_finite_set_nat,
             series@triangle_numbers, sequence_extra, Cauchy_product
+
+  %———— Triangle numbers aux
 
   Tri_strict_increasing: LEMMA
     FORALL(n: nat): FORALL(k:posnat): Tri(n) < Tri(n+k)
@@ -52,6 +71,8 @@ series_extra: THEORY
     FORALL(n: nat, k: nat | k <= n, m: nat):
        Tri(m) <= Tri(n)+k => m <= n
 
+  %——— Series product (flattened)
+
   s_prod_convergence: THEOREM
    FORALL(a, b: sequence[nnreal]):
      conv_series?(a) AND conv_series?(b) =>
@@ -69,7 +90,8 @@ series_extra: THEORY
   	 => limit(series(a)) * limit(series(b)) =
   	    limit(series(
   	    LAMBDA(i:nat): a(s_prod_idx1(i)) * b(s_prod_idx2(i))))
-%————————–
+
+  %———— series/ sum inequality auxiliary ————
 
   convegent_seq_sort: LEMMA
      FORALL(a, b:sequence[real], n:nat):

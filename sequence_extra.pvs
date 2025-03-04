@@ -1,5 +1,21 @@
-sequence_extra: THEORY
+%------------------------------------------------------------------------------
+% Authors:
+%
+%		Bruno Berto de Oliveira Ribeiro
+%		Universidade de Brasília - Brazil
+%
+% 		Thaynara Arielly de Lima
+% 		Universidade Federal de Goiás - Brazil
+%
+%		Mauricio Ayala-Rincón
+%		Universidade de Brasília - Brazil
+%
+%               Mariano M. Moscato
+%               NASA  Langley  Research  Center - US
+%
+%------------------------------------------------------------------------------
 
+sequence_extra: THEORY
   BEGIN
 
   IMPORTING ints@max_finite_set_nat
@@ -62,11 +78,6 @@ sequence_extra: THEORY
      FORALL(n:nat, a: sequence[real]| injective?(a),
   	           b: sequence[real] | n_eq_seq?(n, a, b)):
 	bijective?(LAMBDA(i:nat): n_eq_perm(n, a, b, i))
-
-
-  % Test num 2
-
-  
 
      
   END sequence_extra

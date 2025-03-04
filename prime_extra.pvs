@@ -64,12 +64,10 @@ prime_extra: THEORY
   prime_le_n_is_prime: LEMMA
    FORALL(n:nat, x:(primes_le_n(n))): prime?(x)
 
-  % Change name to prime_counting...
-  prime_enum_eq_zero: LEMMA
+  prime_count_eq_zero: LEMMA
     FORALL(n:nat| n <= 1): prime_counting(n) = 0
 
-  % Change name to prime_counting...
-  prime_enum_ge_one: LEMMA
+  prime_count_ge_one: LEMMA
     FORALL(n:nat| n >= 2): prime_counting(n) >= 1
 
   prime_enum_count: LEMMA
@@ -82,8 +80,7 @@ prime_extra: THEORY
        EXISTS(k:nat| k < prime_counting(n)):
              prime_enumeration(k) = p
 
-  % rename it late
-  prime_index_le_prime_count: LEMMA
+  prime_index_lt_prime_count: LEMMA
      FORALL(x, n: nat): x < prime_counting(n) =>
      	       prime?(prime_enumeration(x))
 

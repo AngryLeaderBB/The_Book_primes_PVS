@@ -76,7 +76,7 @@ Nab_charac: LEMMA
 % The theory primes is imported to have the basic notions and
 % properties of primes. 
 IMPORTING topology@topology[int, fullset[(open_N_Z?)]],
-          ints@primes
+          number_util
 
 % Nonempty open sets are infinite. From this point, the relations 
 % open? and closed? from the theory topology are used. 
@@ -91,9 +91,6 @@ N_prime: setofsets[int] = {Np: set[int] | EXISTS (p: (prime?)): Np = N(0)(p)}
 
 
 %%%%%%%%%
-one_prime_decomposition_ind: LEMMA
-FORALL (n:nat) : n /= 1 IMPLIES EXISTS(p:(prime?)): divides(p,n)
-
 one_prime_decomposition: LEMMA
 abs(x) /=1  IMPLIES EXISTS(p:(prime?)): divides(p,x)
 %%%%%%%%%

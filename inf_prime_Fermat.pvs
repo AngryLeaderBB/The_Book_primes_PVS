@@ -23,7 +23,7 @@ inf_proof_Fermat: THEORY
 
   BEGIN
 
-  IMPORTING ints@gcd, ints@primes, ints@product
+  IMPORTING number_util
 
 %—————– Fermat numbers
 
@@ -54,10 +54,6 @@ inf_proof_Fermat: THEORY
  IMPORTING sets_aux@infinite_nat_def[(prime?)],
            sets_aux@card_sets_lemmas[(prime?)],
            sets_aux@infinite_card[(prime?), (prime?)]
-
-  % Appears in the topology_prime_infinite proof
-  prime_divides: LEMMA
-      FORALL (n:nat) : n /= 1 IMPLIES EXISTS(p:(prime?)): divides(p,n)
 
   min_prime_Fermat_nonempty: LEMMA
     FORALL (n: nat):

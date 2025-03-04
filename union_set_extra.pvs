@@ -1,3 +1,20 @@
+%------------------------------------------------------------------------------
+% Authors:
+%
+%		Bruno Berto de Oliveira Ribeiro
+%		Universidade de Brasília - Brazil
+%
+% 		Thaynara Arielly de Lima
+% 		Universidade Federal de Goiás - Brazil
+%
+%		Mauricio Ayala-Rincón
+%		Universidade de Brasília - Brazil
+%
+%               Mariano M. Moscato
+%               NASA  Langley  Research  Center - US
+%
+%------------------------------------------------------------------------------
+
 union_set_extra[T:type]: THEORY
 
   BEGIN
@@ -38,11 +55,5 @@ union_set_extra[T:type]: THEORY
   union_finseq_ineq2: LEMMA
     FORALL(fs: finseq[finite_set[T]]):
       card[T](union_finseq[T](fs)) <= union_finseq_card_sum(fs, fs`length)
-  
-
-
-  % union(ds)
-  % subeset(a, union(ds)) => EXISTS(i:below[length]): subset(a, ds(i))
-  % Card(union(ds)) <= sigma(0, length, LAMBDA(i:int):Card(ds(i)))
-  
+    
   END union_set_extra

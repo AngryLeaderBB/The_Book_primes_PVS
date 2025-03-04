@@ -27,7 +27,7 @@ inf_prime_groups: THEORY
 
 BEGIN
 IMPORTING ints@max_finite_set_nat,
-          ints@primes,
+          number_util,
           algebra@finite_groups,
           algebra_examples@ring_zn,
           algebra@quotient_rings[int, +, *, 0],
@@ -69,9 +69,6 @@ power_zp_nz_coset(p:(prime?), a: nz_coset(p), k:nat): nz_coset(p) =
 nz_coset_power_id: LEMMA
        FORALL(p:(prime?), a:int | NOT divides(p,a)): FORALL(i:nat):
               power_zp_nz_coset(p, a + nZ(p), i)  = expt(a,i) + nZ(p)
-
-one_prime_decomposition_ind: LEMMA  %% try to include in a general theory about integers
-FORALL (n:nat) : n /= 1 IMPLIES EXISTS(p:(prime?)): divides(p,n)
 
 nz_prime_is_group: LEMMA
 		    FORALL (n:posnat): (prime?(n)) IMPLIES

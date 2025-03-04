@@ -1,3 +1,20 @@
+%------------------------------------------------------------------------------
+% Authors:
+%
+%		Bruno Berto de Oliveira Ribeiro
+%		Universidade de Brasília - Brazil
+%
+% 		Thaynara Arielly de Lima
+% 		Universidade Federal de Goiás - Brazil
+%
+%		Mauricio Ayala-Rincón
+%		Universidade de Brasília - Brazil
+%
+%               Mariano M. Moscato
+%               NASA  Langley  Research  Center - US
+%
+%------------------------------------------------------------------------------
+
 fermats_little_theorem_extra: THEORY
 BEGIN
 

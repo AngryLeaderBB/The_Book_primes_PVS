@@ -1,5 +1,5 @@
 %------------------------------------------------------------------------------
-%  Proof of the infinity of prime numbers using Fermat numbers
+%  Proof of the Cauchy product of series
 %
 %  Formalization based on the reference "Proofs from the Book", 
 %  Martin Aigner Günter and M. Ziegler
@@ -27,6 +27,8 @@ Cauchy_product: THEORY
             reals@bounded_reals
 
 
+  %—————- Auxiliary Lemmas ————-
+
   sigma_reverse: LEMMA
     FORALL(a: sequence[real]): FORALL(n:nat):
     	  sigma[below[n+1]](0, n, LAMBDA(i:below[n+1]): a(i)) =
@@ -41,6 +43,8 @@ Cauchy_product: THEORY
       conv_sum(a, b, n) =
           sigma[below[n+1]](0, n, LAMBDA(i:below[n+1]): a(n-i) * series(b)(i))
 
+  %——————— Mertens proof auxiliary Lemmas ————
+ 
   Cauchy_product_aux: LEMMA
      FORALL(a, b: sequence[real], n: nat):
       conv_series?(a) AND conv_series?(b) =>
@@ -85,6 +89,8 @@ Cauchy_product: THEORY
 	     	LAMBDA(i:below[n+1]):abs(a(n-i))*abs(series(b)(i)-inf_sum(b)))
 				< epsilon
 
+  %———————– Cauchy product —————-
+  
   Cauchy_product_convergence: LEMMA
      FORALL(a, b: sequence[real]):
       conv_series?(abs(a)) AND conv_series?(b) =>

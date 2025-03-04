@@ -24,7 +24,10 @@ number_util: THEORY
   BEGIN
 
   IMPORTING ints@primes, ints@gcd, ints@primes, ints@product
-  
+
+  prime_divides: LEMMA
+      FORALL (n:nat) : n /= 1 IMPLIES EXISTS(p:(prime?)): divides(p,n)
+
   posnat_divides_posnat: LEMMA
     FORALL(a, b:posnat, c:int):
        a = b * c => c > 0

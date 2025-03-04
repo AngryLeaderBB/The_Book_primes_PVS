@@ -48,18 +48,6 @@ inf_prime_harmonic_prime: THEORY
   N(n: posnat): set[posnat] = {m: posnat| m <= n}
 
   N_div(d, n: posnat): set[posnat] = {m: posnat| m <= n AND divides(d, m)}
-
-  % p_0, p_1, p_2, p_3, p_k = 0
-  % k = 0
-  % small = {} , big = {p_0, p_1, ...}
-  % k = 1
-  % small = {p_0}, big = {p_1, ....}
-
-  % 0  1  2  3  4
-  % 2, 3, 0, 0, 0
-
-  % k = 2, small = {p < 0} => {}
-  % k = 2, small = {2, 3}
   
   small_primes(k:nat): set[(prime?)] = {p: (prime?)| p < prime_enumeration(k) OR prime_enumeration(k) = 0}
 
@@ -123,9 +111,6 @@ inf_prime_harmonic_prime: THEORY
      FORALL (n: posnat, k:nat, m: (N_s(n, k))):
        EXISTS(a: (square_free_N_s(n, k)), b: (square_div_N_s(n, k))):
          m = a*b
-
-  one_prime_decomposition_ind: LEMMA  %% try to include in a general theory about integers
-FORALL (n:nat) : n /= 1 IMPLIES EXISTS(p:(prime?)): divides(p,n)
 
   N_s_prime_factor_transfer: LEMMA
      FORALL(n: posnat, k:nat):
@@ -284,33 +269,5 @@ FORALL (n:nat) : n /= 1 IMPLIES EXISTS(p:(prime?)): divides(p,n)
 
   prime_is_infinite: THEOREM
      is_infinite(fullset[(prime?)])
-
-  % sum_upper(p: (prime?)): -> ∑ 1/p
-  % border_constant = min({p: (prime?)| sum_upper(p) < 1/2})
-  % -> small_primes = p < border_constant
-  % -> big_primes = p >= border_constant
-  %
-  % lemma 1: small_primes+big_primes = primes
-  %
-  % N_s(n: nat) = {m: nat| m <= n AND FORALL(p: (prime?)):
-  %                                   divides(p, m) => small_primes(p)}
-  %
-  % N_b(n: nat) = {m: nat| m <= n AND EXISTS(p: (prime?)):
-  %                                   divides(p, m) => big_primes(p)}
-  %
-  % N(n: nat) = {m: nat| m <= n}
-  %
-  % lemma 2: is_finite(prime?) => Union(N_s(n), N_b(n)) = N(n)
-  %
-  % lemma 3: card(N_b(n)) < card(N(n))/2
-  %
-  % lemma 4: FORALL(n: nat, m: (N_s(n))):
-  %             EXISTS(a,b: (product_small_primes)): m = a*b*b
-  %
-  % lemma 5: card(N_s(n)) <= 2^(border_constant)* sqrt(N(n))
-  %
-  % lemma 6: EXISTS(n: nat): Union(N_s(n), N_b(n)) < N(n)
-  %
-  % lemma 7: is_infinite(prime?)
   
   END inf_prime_harmonic_prime

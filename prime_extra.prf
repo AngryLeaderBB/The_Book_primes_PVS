@@ -1074,8 +1074,8 @@
     "finite_set[(prime?)]")))
  (|prime_le_n_is_prime| 0
   (|prime_le_n_is_prime-1| NIL 3946926649 ("" (GRIND) NIL NIL) NIL SHOSTAK))
- (|prime_enum_eq_zero| 0
-  (|prime_enum_eq_zero-1| NIL 3946818394
+ (|prime_count_eq_zero| 0
+  (|prime_count_eq_zero-1| NIL 3946818394
    ("" (SKEEP)
     (("" (EXPAND "prime_counting")
       (("" (REWRITE "card_is_0")
@@ -1124,8 +1124,8 @@
      |structures|)
     (|finite_emptyset| NAME-JUDGEMENT "finite_set" |finite_sets| NIL))
    SHOSTAK))
- (|prime_enum_ge_one| 0
-  (|prime_enum_ge_one-1| NIL 3946756818
+ (|prime_count_ge_one| 0
+  (|prime_count_ge_one-1| NIL 3950087639
    ("" (SKEEP)
     (("" (EXPAND "prime_counting")
       (("" (LEMMA "card_less_than_equal[nat, (prime?)]")
@@ -1198,7 +1198,7 @@
    SHOSTAK))
  (|prime_enum_count_TCC1| 0
   (|prime_enum_count_TCC1-1| NIL 3946044326
-   ("" (LEMMA "prime_enum_ge_one")
+   ("" (LEMMA "prime_count_ge_one")
     (("" (SKEEP) (("" (INST?) (("" (ASSERT) NIL NIL)) NIL)) NIL)) NIL)
    ((|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL)
@@ -1216,7 +1216,7 @@
     (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
     (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
     (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
-    (|prime_enum_ge_one| FORMULA-DECL NIL |prime_extra| NIL))
+    (|prime_count_ge_one| FORMULA-DECL NIL |prime_extra| NIL))
    NIL
    (|prime_enum_count| SUBTYPE
     "(number_fields.-)(prime_extra.prime_counting(prime_extra.n), 1)" "nat")))
@@ -1446,7 +1446,7 @@
                                      ("4" (HIDE-ALL-BUT (1 6))
                                       (("4" (SKEEP)
                                         (("4" (TYPEPRED "x")
-                                          (("4" (LEMMA "prime_enum_ge_one")
+                                          (("4" (LEMMA "prime_count_ge_one")
                                             (("4" (INST -1 "x-1")
                                               (("4" (EXPAND "prime_counting")
                                                 (("4" (ASSERT) NIL NIL)) NIL))
@@ -1568,7 +1568,7 @@
       NIL)
      ("3" (SKEEP)
       (("3" (SKEEP)
-        (("3" (LEMMA "prime_enum_ge_one")
+        (("3" (LEMMA "prime_count_ge_one")
           (("3" (INST -1 "n") (("3" (ASSERT) NIL NIL)) NIL)) NIL))
         NIL))
       NIL))
@@ -1599,7 +1599,7 @@
     (|real_gt_is_strict_total_order| NAME-JUDGEMENT
      "(strict_total_order?[real])" |real_props| NIL)
     (|member| CONST-DECL "bool" |sets| NIL)
-    (|prime_enum_ge_one| FORMULA-DECL NIL |prime_extra| NIL)
+    (|prime_count_ge_one| FORMULA-DECL NIL |prime_extra| NIL)
     (|card| CONST-DECL "{n: nat | n = Card(S)}" |finite_sets| NIL)
     (|Card| CONST-DECL "nat" |finite_sets| NIL)
     (> CONST-DECL "bool" |reals| NIL)
@@ -1802,8 +1802,8 @@
     (|prime_enum_surj| FORMULA-DECL NIL |prime_extra| NIL)
     (|prime_enum_count| FORMULA-DECL NIL |prime_extra| NIL))
    SHOSTAK))
- (|prime_index_le_prime_count| 0
-  (|prime_index_le_prime_count-1| NIL 3946818515
+ (|prime_index_lt_prime_count| 0
+  (|prime_index_lt_prime_count-1| NIL 3950087750
    ("" (SKEEP)
     (("" (LEMMA "prime_enum_count")
       (("" (INST -1 "n")
@@ -1840,7 +1840,7 @@
               NIL))
             NIL))
           NIL)
-         ("2" (LEMMA "prime_enum_eq_zero")
+         ("2" (LEMMA "prime_count_eq_zero")
           (("2" (INST -1 "n") (("1" (ASSERT) NIL NIL) ("2" (ASSERT) NIL NIL))
             NIL))
           NIL))
@@ -1848,7 +1848,7 @@
       NIL))
     NIL)
    ((|prime_enum_count| FORMULA-DECL NIL |prime_extra| NIL)
-    (|prime_enum_eq_zero| FORMULA-DECL NIL |prime_extra| NIL)
+    (|prime_count_eq_zero| FORMULA-DECL NIL |prime_extra| NIL)
     (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL)
     (|prime_enum_id| FORMULA-DECL NIL |prime_extra| NIL)
@@ -3370,10 +3370,10 @@
  (|product_prime_inj_TCC1| 0
   (|product_prime_inj_TCC1-1| NIL 3946820643
    ("" (SKEEP)
-    (("" (LEMMA "prime_enum_ge_one") (("" (INST?) (("" (ASSERT) NIL NIL)) NIL))
-      NIL))
+    (("" (LEMMA "prime_count_ge_one")
+      (("" (INST?) (("" (ASSERT) NIL NIL)) NIL)) NIL))
     NIL)
-   ((|prime_enum_ge_one| FORMULA-DECL NIL |prime_extra| NIL)
+   ((|prime_count_ge_one| FORMULA-DECL NIL |prime_extra| NIL)
     (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
      |real_props| NIL)
     (|real_gt_is_strict_total_order| NAME-JUDGEMENT
@@ -3398,7 +3398,7 @@
   (|product_prime_inj_TCC1-1| NIL 3946049789
    ("" (SKEEP)
     (("" (ASSERT)
-      (("" (LEMMA "prime_enum_ge_one")
+      (("" (LEMMA "prime_count_ge_one")
         (("" (INST?) (("" (ASSERT) NIL NIL)) NIL)) NIL))
       NIL))
     NIL)
@@ -3418,7 +3418,7 @@
     (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
     (>= CONST-DECL "bool" |reals| NIL)
     (|nat| NONEMPTY-TYPE-EQ-DECL NIL |naturalnumbers| NIL)
-    (|prime_enum_ge_one| FORMULA-DECL NIL |prime_extra| NIL))
+    (|prime_count_ge_one| FORMULA-DECL NIL |prime_extra| NIL))
    NIL
    (|product_prime_inj| SUBTYPE
     "(number_fields.-)(prime_extra.prime_counting(prime_extra.n), 1)"
@@ -3989,7 +3989,7 @@
               LAMBDA (i: nat | i < prime_counting(n)):
                 posnat_prime_decomp(prime_counting(n), m)`seq(i)) > 0")
               (("1" (INST?)
-                (("1" (LEMMA "prime_enum_ge_one")
+                (("1" (LEMMA "prime_count_ge_one")
                   (("1" (INST -1 "n") (("1" (ASSERT) NIL NIL)) NIL)) NIL))
                 NIL)
                ("2" (HIDE 2)
@@ -4050,7 +4050,7 @@
               NIL))
             NIL))
           NIL)
-         ("3" (LEMMA "prime_enum_ge_one")
+         ("3" (LEMMA "prime_count_ge_one")
           (("3" (INST -1 "n") (("3" (ASSERT) NIL NIL)) NIL)) NIL))
         NIL))
       NIL))
@@ -4062,7 +4062,7 @@
     (|T_low| TYPE-EQ-DECL NIL |product| |reals|)
     (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
     (OR CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
-    (|prime_enum_ge_one| FORMULA-DECL NIL |prime_extra| NIL)
+    (|prime_count_ge_one| FORMULA-DECL NIL |prime_extra| NIL)
     (|real_lt_is_strict_total_order| NAME-JUDGEMENT
      "(strict_total_order?[real])" |real_props| NIL)
     (|pred| TYPE-EQ-DECL NIL |defined_types| NIL)
@@ -4126,14 +4126,14 @@
  (|inverse_prime_ineq_TCC1| 0
   (|inverse_prime_ineq_TCC1-1| NIL 3947078464
    ("" (SKEEP)
-    (("" (LEMMA "prime_index_le_prime_count")
+    (("" (LEMMA "prime_index_lt_prime_count")
       (("" (INST -1 "i" "n")
         (("" (ASSERT) (("" (EXPAND "prime?") (("" (PROPAX) NIL NIL)) NIL))
           NIL))
         NIL))
       NIL))
     NIL)
-   ((|prime_index_le_prime_count| FORMULA-DECL NIL |prime_extra| NIL)
+   ((|prime_index_lt_prime_count| FORMULA-DECL NIL |prime_extra| NIL)
     (|real_lt_is_strict_total_order| NAME-JUDGEMENT
      "(strict_total_order?[real])" |real_props| NIL)
     (|prime?| CONST-DECL "bool" |primes| |ints|)
@@ -4156,7 +4156,7 @@
  (|inverse_prime_ineq| 0
   (|inverse_prime_ineq-1| NIL 3947078465
    ("" (SKEEP)
-    (("" (LEMMA "prime_index_le_prime_count")
+    (("" (LEMMA "prime_index_lt_prime_count")
       (("" (INST -1 "i" "n")
         (("" (ASSERT)
           (("" (EXPAND "prime?")
@@ -4181,7 +4181,7 @@
         NIL))
       NIL))
     NIL)
-   ((|prime_index_le_prime_count| FORMULA-DECL NIL |prime_extra| NIL)
+   ((|prime_index_lt_prime_count| FORMULA-DECL NIL |prime_extra| NIL)
     (|real_lt_is_strict_total_order| NAME-JUDGEMENT
      "(strict_total_order?[real])" |real_props| NIL)
     (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
@@ -4343,7 +4343,7 @@
   (|inv_prime_decomp_TCC6-1| NIL 3946915662
    ("" (SKEEP)
     (("" (TYPEPRED "i")
-      (("" (LEMMA "prime_index_le_prime_count")
+      (("" (LEMMA "prime_index_lt_prime_count")
         (("" (INST -1 "i" "n") (("" (ASSERT) NIL NIL)) NIL)) NIL))
       NIL))
     NIL)
@@ -4366,7 +4366,7 @@
     (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
     (|real_lt_is_strict_total_order| NAME-JUDGEMENT
      "(strict_total_order?[real])" |real_props| NIL)
-    (|prime_index_le_prime_count| FORMULA-DECL NIL |prime_extra| NIL))
+    (|prime_index_lt_prime_count| FORMULA-DECL NIL |prime_extra| NIL))
    NIL
    (|inv_prime_decomp| SUBTYPE "prime_extra.prime_enumeration(prime_extra.i)"
     "(primes.prime?)")))
@@ -4467,7 +4467,7 @@
        ("2" (HIDE 2)
         (("2" (SKEEP)
           (("2" (TYPEPRED "i")
-            (("2" (LEMMA "prime_index_le_prime_count")
+            (("2" (LEMMA "prime_index_lt_prime_count")
               (("2" (INST -1 "i" "n") (("2" (ASSERT) NIL NIL)) NIL)) NIL))
             NIL))
           NIL))
@@ -4562,7 +4562,7 @@
      |real_props| NIL)
     (|real_lt_is_strict_total_order| NAME-JUDGEMENT
      "(strict_total_order?[real])" |real_props| NIL)
-    (|prime_index_le_prime_count| FORMULA-DECL NIL |prime_extra| NIL)
+    (|prime_index_lt_prime_count| FORMULA-DECL NIL |prime_extra| NIL)
     (|product_gt_0| FORMULA-DECL NIL |product| |reals|)
     (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
     (|real_gt_is_strict_total_order| NAME-JUDGEMENT

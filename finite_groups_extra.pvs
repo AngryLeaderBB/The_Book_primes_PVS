@@ -1,3 +1,22 @@
+%------------------------------------------------------------------------------
+% Authors:
+%               Marcos Rony Silva Brandão
+%               Universidade Federal de Goiás - Brazil
+%
+% 		Thaynara Arielly de Lima
+% 		Universidade Federal de Goiás - Brazil
+%
+%		Bruno Berto de Oliveira Ribeiro
+%		Universidade de Brasília - Brazil
+%
+%		Mauricio Ayala-Rincón
+%		Universidade de Brasília - Brazil
+%
+%               Mariano M. Moscato
+%               NASA  Langley  Research  Center - US
+%
+%------------------------------------------------------------------------------
+
 finite_groups_extra[T:Type+,*:[T,T->T],one:T]: THEORY
 
 BEGIN
