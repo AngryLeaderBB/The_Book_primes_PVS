@@ -1,21 +1,21 @@
 %------------------------------------------------------------------------------
 %  Proof of the infinity of prime numbers using reciprocal of primes series
 %
-%  Formalization based on the reference "Proofs from the Book", 
+%  Formalization based on the reference "Proofs from THE BOOK", 
 %  Martin Aigner Günter and M. Ziegler
 %
 % Authors:	
-%		Bruno Berto de Oliveira Ribeiro
-%		Universidade de Brasília - Brazil
+%		Anonymous author
+% 		Anonymous affiliation
 %
-%		Mauricio Ayala-Rincón
-%		Universidade de Brasília - Brazil
+%		Anonymous author
+% 		Anonymous affiliation
 %
-% 		Thaynara Arielly de Lima
-% 		Universidade Federal de Goiás - Brazil
+% 		Anonymous author
+% 		Anonymous affiliation
 %
-%               Mariano M. Moscato
-%               NASA  Langley  Research  Center - US
+%               Anonymous author
+% 		Anonymous affiliation
 %
 %------------------------------------------------------------------------------
 
@@ -284,33 +284,5 @@ FORALL (n:nat) : n /= 1 IMPLIES EXISTS(p:(prime?)): divides(p,n)
 
   prime_is_infinite: THEOREM
      is_infinite(fullset[(prime?)])
-
-  % sum_upper(p: (prime?)): -> ∑ 1/p
-  % border_constant = min({p: (prime?)| sum_upper(p) < 1/2})
-  % -> small_primes = p < border_constant
-  % -> big_primes = p >= border_constant
-  %
-  % lemma 1: small_primes+big_primes = primes
-  %
-  % N_s(n: nat) = {m: nat| m <= n AND FORALL(p: (prime?)):
-  %                                   divides(p, m) => small_primes(p)}
-  %
-  % N_b(n: nat) = {m: nat| m <= n AND EXISTS(p: (prime?)):
-  %                                   divides(p, m) => big_primes(p)}
-  %
-  % N(n: nat) = {m: nat| m <= n}
-  %
-  % lemma 2: is_finite(prime?) => Union(N_s(n), N_b(n)) = N(n)
-  %
-  % lemma 3: card(N_b(n)) < card(N(n))/2
-  %
-  % lemma 4: FORALL(n: nat, m: (N_s(n))):
-  %             EXISTS(a,b: (product_small_primes)): m = a*b*b
-  %
-  % lemma 5: card(N_s(n)) <= 2^(border_constant)* sqrt(N(n))
-  %
-  % lemma 6: EXISTS(n: nat): Union(N_s(n), N_b(n)) < N(n)
-  %
-  % lemma 7: is_infinite(prime?)
-  
+ 
   END inf_prime_harmonic_prime

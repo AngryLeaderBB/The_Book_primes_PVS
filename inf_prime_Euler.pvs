@@ -1,21 +1,21 @@
 %------------------------------------------------------------------------------
 %  Proof of the infinity of prime numbers using Euler product
 %
-%  Formalization based on the reference "Proofs from the Book", 
+%  Formalization based on the reference "Proofs from THE BOOK", 
 %  Martin Aigner Günter and M. Ziegler
 %
 % Authors:	
-%		Bruno Berto de Oliveira Ribeiro
-%		Universidade de Brasília - Brazil
+%		Anonymous author
+% 		Anonymous affiliation
 %
-%		Mauricio Ayala-Rincón
-%		Universidade de Brasília - Brazil
+%		Anonymous author
+% 		Anonymous affiliation
 %
-% 		Thaynara Arielly de Lima
-% 		Universidade Federal de Goiás - Brazil
+% 		Anonymous author
+% 		Anonymous affiliation
 %
-%               Mariano M. Moscato
-%               NASA  Langley  Research  Center - US
+%               Anonymous author
+% 		Anonymous affiliation
 %
 %------------------------------------------------------------------------------
 
