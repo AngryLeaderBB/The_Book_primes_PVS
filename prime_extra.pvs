@@ -3,17 +3,17 @@
 %
 % Authors:
 %
-%		Bruno Berto de Oliveira Ribeiro
-%		Universidade de Brasília - Brazil
+%		Anonymous author
+% 		Anonymous affiliation
 %
-% 		Thaynara Arielly de Lima
-% 		Universidade Federal de Goiás - Brazil
+% 		Anonymous author
+% 		Anonymous affiliation
 %
-%		Mauricio Ayala-Rincón
-%		Universidade de Brasília - Brazil
+%		Anonymous author
+% 		Anonymous affiliation
 %
-%               Mariano M. Moscato
-%               NASA  Langley  Research  Center - US
+%               Anonymous author
+% 		Anonymous affiliation
 %
 %------------------------------------------------------------------------------
 
@@ -194,19 +194,5 @@ prime_extra: THEORY
                            k) =
 	product(0, k, LAMBDA(i:below[prime_counting(n)]):
 		       1/max_prime_div(prime_enumeration(i), m))
- 
-  % PROD > 0
-  % GCD p_i, p_k = 1
-  % PROD ∘ f (n) = l => l | n
-  % Se i <= prime_counting(n) => PROD ∘ f (i) = i
-
-  %———- INVERSE CASE
-
-  %inv_prime_decomposition(k:nat): set[finseq[real]] =
-  %{fs: finseq[real]| EXISTS(m:posnat): 
-  %   (# length := k,
-  %    seq := LAMBDA(i:nat): 1/max_prime_div(prime_enumeration(i), m) #)}
-
   
- 
   END prime_extra

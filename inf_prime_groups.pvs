@@ -2,24 +2,24 @@
 %  Proof of the infinity of prime numbers using the multiplicative group
 %  Z_q, where q is a prime number, and Lagrange's Theorem. 
 %
-%  Formalization based on the reference "Proofs from the Book", 
+%  Formalization based on the reference "Proofs from THE BOOK", 
 %  Martin Aigner Günter and M. Ziegler
 %
 % Authors:
-%               Marcos Rony Silva Brandão
-%               Universidade Federal de Goiás - Brazil
+%               Anonymous author
+% 		Anonymous affiliation
 %
-% 		Thaynara Arielly de Lima
-% 		Universidade Federal de Goiás - Brazil
+% 		Anonymous author
+% 		Anonymous affiliation
 %
-%		Bruno Berto de Oliveira Ribeiro
-%		Universidade de Brasília - Brazil
+%		Anonymous author
+% 		Anonymous affiliation
 %
-%		Mauricio Ayala-Rincón
-%		Universidade de Brasília - Brazil
+%		Anonymous author
+% 		Anonymous affiliation
 %
-%               Mariano M. Moscato
-%               NASA  Langley  Research  Center - US
+%               Anonymous author
+% 		Anonymous affiliation
 %
 %------------------------------------------------------------------------------
 
